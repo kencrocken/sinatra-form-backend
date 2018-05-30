@@ -2,12 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     json (2.1.0)
-    mail (2.7.0)
-      mini_mime (>= 0.1.1)
-    mini_mime (1.0.0)
     mustermann (1.0.2)
-    pony (1.12)
-      mail (>= 2.0)
     rack (2.0.5)
     rack-protection (2.0.1)
       rack
@@ -28,7 +23,6 @@ PLATFORMS
 
 DEPENDENCIES
   json
-  pony
   rack
   sendgrid-ruby
   sinatra
@@ -38,4 +32,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
