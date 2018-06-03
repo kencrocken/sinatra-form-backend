@@ -63,6 +63,6 @@ end
 options '*' do
   response.headers["Allow"] = "GET, POST, OPTIONS"
   response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-  response.headers["Access-Control-Allow-Origin"] = "*"
+  # response.headers["Access-Control-Allow-Origin"] = "*"
   200
 end
