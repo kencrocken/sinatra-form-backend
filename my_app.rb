@@ -19,7 +19,7 @@ before do
     @values = JSON.parse request.body.read
   end
   content_type :json
-  headers 'Access-Control-Allow-Origin' => '*',
+  headers 'Access-Control-Allow-Origin' => 'https://peaceful-easley-3144c1.netlify.com/',
           'Access-Control-Allow-Methods' => ['POST']
 end
 
@@ -63,6 +63,6 @@ end
 options '*' do
   response.headers["Allow"] = "GET, POST, OPTIONS"
   response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-  response.headers["Access-Control-Allow-Origin"] = "https://peaceful-easley-3144c1.netlify.com/"
+  response.headers["Access-Control-Allow-Origin"] = "*"
   200
 end
