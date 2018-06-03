@@ -54,7 +54,6 @@ post '/' do
     @sent = true
     return @values.to_json
   rescue StandardError => e
-    puts e
     status 500
     @failure = { message: 'Ooops, it looks like something went wrong while attempting to send your email. Mind trying again now or later? :)', ok: false }
     return @failure.to_json
@@ -64,6 +63,6 @@ end
 options '*' do
   response.headers["Allow"] = "GET, POST, OPTIONS"
   response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-  response.headers["Access-Control-Allow-Origin"] = "*"
+  response.headers["Access-Control-Allow-Origin"] = "https://peaceful-easley-3144c1.netlify.com/"
   200
 end
