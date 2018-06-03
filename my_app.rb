@@ -20,7 +20,7 @@ before do
   end
   content_type :json
   headers 'Access-Control-Allow-Origin' => 'https://peaceful-easley-3144c1.netlify.com/'
-  # 'Access-Control-Allow-Methods' => ['POST']
+          # 'Access-Control-Allow-Methods' => ['POST']
 end
 
 def send_email(params, ipaddress)
@@ -63,6 +63,6 @@ end
 options '*' do
   response.headers["Allow"] = "GET, POST, OPTIONS"
   response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-  # response.headers["Access-Control-Allow-Origin"] = "*"
+  response.headers["Access-Control-Allow-Origin"] = "*"
   200
 end
