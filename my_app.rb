@@ -52,7 +52,7 @@ post '/' do
   begin
     send_email(@values, @env['REMOTE_ADDR'])
     @sent = true
-    return @values.to_json
+    return { submitted_values: @values, message:'success', ok: true};
   rescue StandardError => e
     status 500
     @failure = { message: 'Ooops, it looks like something went wrong while attempting to send your email. Mind trying again now or later? :)', ok: false }
@@ -63,6 +63,6 @@ end
 options '*' do
   response.headers["Allow"] = "GET, POST, OPTIONS"
   response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-  response.headers["Access-Control-Allow-Origin"] = "*"
+  response.headers["Access-Control-Allow-Origin"] = "https://blooming-plateau-13052.herokuapp.com/"
   200
 end
