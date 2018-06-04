@@ -67,7 +67,7 @@ post '/' do
     # send_thanks( @values )
     @sent = send_email(@values, @env['REMOTE_ADDR'])
     # puts @sent.inspect
-    return { response: @sent.to_json, submitted_values: @values, message: 'success', ok: true }.to_json
+    return { response: @sent.status_code, submitted_values: @values, message: 'success', ok: true }.to_json
   rescue StandardError => e
     status 500
     puts e.inspect
