@@ -23,6 +23,7 @@ end
 def send_email(params, ipaddress)
   @params = params
   @ipaddress = ipaddress
+
   text_message_0 = %(
     You have received the following:
     Email:  #{params['email']}
@@ -44,9 +45,10 @@ def send_email(params, ipaddress)
     "[kencrocken.github.io] New Message from #{params['name']} - #{params['email']}",
     "[kencrocken.github.io] Thanks!"
   ]
-  thanks = Mailer.new(text_message_0, erb(:thanks), subjects[0], params['email'])
+
+  thanks = Mailer.new(text_message_0, erb(:thanks), subjects[1], params['email'])
   thanks.send()
-  email = Mailer.new(text_message_1, erb(:email), subjects[1], 'kcrocken@gmail.com')
+  email = Mailer.new(text_message_1, erb(:email), subjects[0], 'kcrocken@gmail.com')
   email.send()
 end
 get '/' do
