@@ -17,7 +17,7 @@ before do
     @values = JSON.parse request.body.read
   end
   content_type :json
-  headers 'Access-Control-Allow-Origin' => 'https://peaceful-easley-3144c1.netlify.com/'
+  headers 'Access-Control-Allow-Origin' => 'https://peaceful-easley-3144c1.netlify.com'
 end
 
 def send_email(params, ipaddress)
