@@ -9,19 +9,22 @@ class Mailer
     @html    = html_content
     @subject = subject
     @email   = email
+    @from = 'no-reply@kencrocken.github.io'
   end
 
   def send
     mail = Mail.new
-    mail.from = Email.new(email: 'no-reply@kencrocken.github.io')
+    mail.from = Email.new(email: @from)
     personalization = Personalization.new
     personalization.add_to(Email.new(email: @email))
     personalization.subject = @subject
     mail.add_personalization(personalization)
-    mail.add_content(Content.new(type: 'text/plain', value: @text_content))
-    mail.add_content(Content.new(type: 'text/html', value: @html_content))
+    mail.add_content(Content.new(type: 'text/plain', value: @text))
+    mail.add_content(Content.new(type: 'text/html', value: @html))
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     response = sg.client.mail._('send').post(request_body: mail.to_json)
-    response
+    # puts response.status_code
+    # puts response.headers
+    # puts response.body
   end
 end

@@ -17,7 +17,7 @@ before do
     @values = JSON.parse request.body.read
   end
   content_type :json
-  headers 'Access-Control-Allow-Origin' => 'https://peaceful-easley-3144c1.netlify.com'
+  headers 'Access-Control-Allow-Origin' => '*'
 end
 
 def send_email(params, ipaddress)
@@ -48,6 +48,7 @@ def send_email(params, ipaddress)
 
   thanks = Mailer.new(text_message_0, erb(:thanks), subjects[1], params['email'])
   thanks.send()
+  puts thanks.inspect
   email = Mailer.new(text_message_1, erb(:email), subjects[0], 'kcrocken@gmail.com')
   email.send()
 end
@@ -62,10 +63,11 @@ post '/' do
   end
 
   begin
-    send_email(@values, @env['REMOTE_ADDR'])
+
     # send_thanks( @values )
-    @sent = true
-    return { submitted_values: @values, message: 'success', ok: true }.to_json
+    @sent = send_email(@values, @env['REMOTE_ADDR'])
+    # puts @sent.inspect
+    return { response: @sent.to_json, submitted_values: @values, message: 'success', ok: true }.to_json
   rescue StandardError => e
     status 500
     puts e.inspect
