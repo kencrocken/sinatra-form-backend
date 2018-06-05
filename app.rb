@@ -26,7 +26,7 @@ end
 post '/' do
   begin
     if @values.empty?
-      status 500
+      status 400
       return { message: 'values are empty', ok: false }.to_json
     end
     response = send_email(@values, @env['REMOTE_ADDR'])
