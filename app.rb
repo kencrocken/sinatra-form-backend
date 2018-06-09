@@ -17,12 +17,13 @@ before do
     @values = JSON.parse request.body.read
   end
   content_type :json
-  headers 'Access-Control-Allow-Origin' => 'https://peaceful-easley-3144c1.netlify.com'
+  headers 'Access-Control-Allow-Origin' => ENV['SITE_LIST']
 end
 
 get '/' do
   { message: 'success', ok: true }.to_json
 end
+
 post '/' do
   begin
     if @values.empty?
