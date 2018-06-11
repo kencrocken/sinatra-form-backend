@@ -8,6 +8,8 @@ module ResponseHelpers
       "[kencrocken.github.io] New Message from #{params['name']} - #{params['email']}",
       '[kencrocken.github.io] Thanks!'
     ]
+    @params = params
+    @ipaddress = ipaddress
     thanks = Mailer.new(thanks_text(params), erb(:thanks), subjects[1], params['email'])
     email = Mailer.new(email_text(params, ipaddress), erb(:email), subjects[0], 'kcrocken@gmail.com')
     email.send
