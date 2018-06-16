@@ -8,12 +8,19 @@ module ResponseHelpers
       "[kencrocken.github.io] New Message from #{params['name']} - #{params['email']}",
       '[kencrocken.github.io] Thanks!'
     ]
-    @params = params
-    @ipaddress = ipaddress
-    thanks = Mailer.new(thanks_text(params), erb(:thanks), subjects[1], params['email'])
-    email = Mailer.new(email_text(params, ipaddress), erb(:email), subjects[0], 'kcrocken@gmail.com')
-    email.send
-    thanks.send
+    thanks = Mailer.new(
+      thanks_text(params),
+      erb(:thanks, locals: { name: params['name'] }),
+      subjects[1],
+      params['email'])
+    email = Mailer.new(
+      email_text(params, ipaddress),
+      erb(:email, locals: { params: params, ipaddress: ipaddress }),
+      subjects[0],
+      'kcrocken@gmail.com'
+      )
+    sg_response = { email: email.send, thanks: thanks.send }
+    sg_response[:thanks]
   end
 
   def handle_response(response, submitted_values)
